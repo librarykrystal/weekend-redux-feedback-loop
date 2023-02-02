@@ -16,24 +16,72 @@ import { takeEvery, put } from 'redux-saga/effects';
 // Saga SETUP
 const sagaMiddleware = createSagaMiddleware();
 
-// REDUCERS
+
+// REDUCER: Feeling
+const feelingR = (state = 0, action) => {
+    if(action.type === 'SET_FEELING'){
+        console.log('SET_FEELING');
+        return action.payload;
+    }
+    return state;
+};
+
+// REDUCER: Understanding
+const understandingR = (state = 0, action) => {
+    if(action.type === 'SET_UNDERSTANDING'){
+        console.log('SET_UNDERSTANDING');
+        return action.payload;
+    }
+    return state;
+};
+
+// REDUCER: Support
+const supportR = (state = 0, action) => {
+    if(action.type === 'SET_SUPPORT'){
+        console.log('SET_SUPPORT');
+        return action.payload;
+    }
+    return state;
+};
+
+// REDUCER: Comments
+const commentsR = (state = '', action) => {
+    if(action.type === 'SET_SUPPORT'){
+        console.log('SET_SUPPORT');
+        return action.payload;
+    }
+    return state;
+};
 
 
-
-// SAGAS
+// SAGA: watcher for actions
 function* watcherSaga(){
-    // yield takeEvery('FETCH_ELEMENTS', fetchElements);
-    // yield takeEvery('POST_ELEMENT', postElement);
+    // takeEvery: first param is action it's listening for, then redirects it to second param
+    yield takeEvery('POST_FEEDBACK', postFeedback);
     console.log('watcherSaga');
 }
+
+// SAGA: POST axios
+function* postFeedback(action){
+    console.log('POST ACTION:', action.payload);
+    try{
+        yield axios.post('/???', action.payload);
+        // yield put({ type: 'FETCH_FEEDBACK'})     // Maybe don't need this unless ADMIN stretch
+    } catch (error) {
+        console.log('POST ERROR:', error);
+    }
+}
+
+// SAGA: fetch/GET axios
 
 
 // STORE
 const storeInstance = createStore(
     combineReducers({
-        // firstReducer,
-        // secondReducer,
-        // elementListReducer,
+        feelingR,
+        understandingR,
+        supportR,
+        commentsR,
     }),
     applyMiddleware(sagaMiddleware, logger),
 );
@@ -41,8 +89,6 @@ const storeInstance = createStore(
 // Running watcherSaga:
 sagaMiddleware.run(watcherSaga);
 
-// ReactDOM.render(<App />, document.getElementById('root'));
-// registerServiceWorker();
 // PROVIDER
 ReactDOM.render(<Provider store={storeInstance}><App/></Provider>, document.getElementById('root'));
 registerServiceWorker();
