@@ -7,16 +7,27 @@ function Support () {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const [supportInput, setSupportInput] = useState(NaN);
+    const [supportInput, setSupportInput] = useState(0);
+
+    // Warning default is false,
+    // changes to true if user attempts to continue without making selection:
+    const [blankWarning, setBlankWarning] = useState(false);
 
     const handleSubmit = (event) => {
-        console.log('SUPPORT SUBMIT CLICKED');
+        // console.log('SUPPORT SUBMIT CLICKED');
         event.preventDefault();
-        dispatch({
-            type: 'SET_SUPPORT',
-            payload: supportInput
-          });
-        routeToComments();
+        // if no selection was made, trigger the warning (and do NOT send user to next step):
+        if(supportInput == 0){
+            console.log('NO ZEROES ALLOWED!');
+            setBlankWarning(true);
+        // if a selection WAS made, dispatch it to the reducer and route user to next step:
+        } else {
+            dispatch({
+                type: 'SET_SUPPORT',
+                payload: supportInput
+              });
+            routeToComments();
+        }
     }
 
     const routeToComments = () => {
@@ -30,12 +41,15 @@ function Support () {
         <p>1 is bad, like you're flying by the seat of your pants.</p>
         <form onSubmit={handleSubmit} className="supportInput">
             <input
-                required
+                // required   // prevents if stmt from checking warning boolean in handleSubmit
                 className="numberInput"
                 type="number" min={1} max={5}
                 onChange={(event) => setSupportInput(event.target.value)}
             />
             <br />
+            {/* Conditional render -
+            blankWarning is only truthy if user has attempted to continue without making selection */}
+            { blankWarning && <p className="noEntry">Please make a selection to continue.</p>}
             <br />
             <button type="submit">NEXT</button>
         </form>

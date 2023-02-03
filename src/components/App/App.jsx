@@ -15,10 +15,10 @@ import Submitted from "../Submitted/Submitted";
 
 function App() {
 
-  // FOR SHOWING VALUES ON HEADER DURING BUILDING/TESTING:
-  const feels = useSelector(store => store.feelingR);
-  const understands = useSelector(store => store.understandingR);
-  const sups = useSelector(store => store.supportR);
+// VARIABLES FOR SHOWING VALUES ON HEADER DURING BUILDING/TESTING:
+  // const feels = useSelector(store => store.feelingR);
+  // const understands = useSelector(store => store.understandingR);
+  // const sups = useSelector(store => store.supportR);
 
   return (
     <Router>
@@ -28,12 +28,12 @@ function App() {
           <h4 className='Forget-it'>Don't forget it</h4>
 
 {/* LINKS FOR USE DURING BUILDING/TESTING: */}
-          <Link to="/">Feeling</Link> {feels} <br />
+          {/* <Link to="/">Feeling</Link> {feels} <br />
           <Link to="/understanding">Understanding</Link> {understands} <br />
           <Link to="/support">Support</Link> {sups} <br />
           <Link to="/comments">Comments</Link> <br />
           <Link to="/review">Review</Link> <br />
-
+          <Link to="/submitted">Submitted</Link> <br /> */}
         </header>
 
         <Route path="/" exact>

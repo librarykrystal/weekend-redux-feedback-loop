@@ -50,3 +50,7 @@ a:link {
 a:visited {
   color: aqua;
 }
+
+.noEntry {
+  color: firebrick;
+}
