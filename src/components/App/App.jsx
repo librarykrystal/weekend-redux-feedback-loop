@@ -15,6 +15,7 @@ import Submitted from "../Submitted/Submitted";
 
 function App() {
 
+  // FOR SHOWING VALUES ON HEADER DURING BUILDING/TESTING:
   const feels = useSelector(store => store.feelingR);
   const understands = useSelector(store => store.understandingR);
   const sups = useSelector(store => store.supportR);
@@ -24,7 +25,7 @@ function App() {
       <div className='App'>
         <header className='App-header'>
           <h1 className='App-title'>Feedback</h1>
-          <h4>Don't forget it</h4>
+          <h4 className='Forget-it'>Don't forget it</h4>
 
 {/* LINKS FOR USE DURING BUILDING/TESTING: */}
           <Link to="/">Feeling</Link> {feels} <br />

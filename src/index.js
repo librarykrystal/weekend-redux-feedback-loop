@@ -65,10 +65,10 @@ function* watcherSaga(){
 function* postFeedback(action){
     console.log('POST ACTION:', action.payload);
     try{
-        yield axios.post('/???', action.payload);
-        // yield put({ type: 'FETCH_FEEDBACK'})     // Maybe don't need this unless ADMIN stretch
+        yield axios.post('/feedback', action.payload);
+        // yield put({ type: 'FETCH_FEEDBACK'})  
     } catch (error) {
-        console.log('POST ERROR:', error);
+        console.log('POST SAGA ERROR:', error);
     }
 }
 

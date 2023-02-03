@@ -19,8 +19,23 @@
   font-size: large;
 }
 
-h4 {
+.Forget-it {
   font-style: italic;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.bold-comments {
+  font-weight: bold;
+  margin: 0;
+}
+
+.comments {
+  margin-top: 0;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 input[type=number]::-webkit-inner-spin-button, 
