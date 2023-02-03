@@ -46,8 +46,8 @@ const supportR = (state = 0, action) => {
 
 // REDUCER: Comments
 const commentsR = (state = '', action) => {
-    if(action.type === 'SET_SUPPORT'){
-        console.log('SET_SUPPORT');
+    if(action.type === 'SET_COMMENTS'){
+        console.log('SET_COMMENTS');
         return action.payload;
     }
     return state;
