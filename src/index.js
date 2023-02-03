@@ -58,7 +58,7 @@ const commentsR = (state = '', action) => {
 function* watcherSaga(){
     // takeEvery: first param is action it's listening for, then redirects it to second param
     yield takeEvery('POST_FEEDBACK', postFeedback);
-    console.log('watcherSaga');
+    // console.log('watcherSaga');
 }
 
 // SAGA: POST axios

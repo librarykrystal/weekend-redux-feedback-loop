@@ -14,8 +14,10 @@ import Submitted from "../Submitted/Submitted";
 
 
 function App() {
-  
+
   const feels = useSelector(store => store.feelingR);
+  const understands = useSelector(store => store.understandingR);
+  const sups = useSelector(store => store.supportR);
 
   return (
     <Router>
@@ -23,7 +25,14 @@ function App() {
         <header className='App-header'>
           <h1 className='App-title'>Feedback</h1>
           <h4>Don't forget it</h4>
-          <p>Feeling: {feels}</p>
+
+{/* LINKS FOR USE DURING BUILDING/TESTING: */}
+          <Link to="/">Feeling</Link> {feels} <br />
+          <Link to="/understanding">Understanding</Link> {understands} <br />
+          <Link to="/support">Support</Link> {sups} <br />
+          <Link to="/comments">Comments</Link> <br />
+          <Link to="/review">Review</Link> <br />
+
         </header>
 
         <Route path="/" exact>

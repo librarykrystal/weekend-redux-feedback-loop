@@ -7,7 +7,7 @@ function Feeling () {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const [feelingInput, setFeelingInput] = useState(0);
+    const [feelingInput, setFeelingInput] = useState(NaN);
 
     const handleSubmit = (event) => {
         console.log('FEELING SUBMIT CLICKED');
@@ -44,7 +44,3 @@ function Feeling () {
 }
 
 export default Feeling;
-
-// NEXT BTN needs to:
-    // Send user to next component route
-    // Dispatch input to Redux
