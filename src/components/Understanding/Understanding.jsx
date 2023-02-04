@@ -7,6 +7,8 @@ function Understanding () {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const understandingStore = useSelector(store => store.understandingR);
+
     const [understandingInput, setUnderstandingInput] = useState(0);
 
     // Warning default is false,
@@ -16,22 +18,57 @@ function Understanding () {
     const handleSubmit = (event) => {
         // console.log('UNDERSTANDING SUBMIT CLICKED');
         event.preventDefault();
-        // if no selection was made, trigger the warning (and do NOT send user to next step):
-        if(understandingInput == 0){
+        // if no selection has been made, trigger the warning and do NOT route user anywhere:
+        if(understandingInput == 0 && understandingStore == 0){
             console.log('NO ZEROES ALLOWED!');
             setBlankWarning(true);
-        // if a selection WAS made, dispatch it to the reducer and route user to next step:
+        // if selection was previously made, and is not being changed, send user to review page:
+        } else if (understandingInput == 0 && understandingStore != 0){
+            console.log('FINE, KEEP YOUR PRE-EXISTING UNDERSTANDING!');
+            routeToReview();
+        // if user is updating a previous selection, dispatch it to reducer and send user to review page:
+        } else if (understandingInput != 0 && understandingStore != 0){
+            console.log('THANKS FOR UPDATING YOUR UNDERSTANDING!');
+            dispatch({
+                type: 'SET_UNDERSTANDING',
+                payload: understandingInput
+              });
+            routeToReview();
+        // if a selection is made for the first time, dispatch it to the reducer and route user to next step:
         } else {
-        dispatch({
-            type: 'SET_UNDERSTANDING',
-            payload: understandingInput
-          });
-        routeToSupport();
+            console.log('THANKS FOR SHARING YOUR UNDERSTANDING!');
+            dispatch({
+                type: 'SET_UNDERSTANDING',
+                payload: understandingInput
+            });
+            routeToSupport();
         }
     }
 
+
+    // const handleSubmit = (event) => {
+    //     // console.log('UNDERSTANDING SUBMIT CLICKED');
+    //     event.preventDefault();
+    //     // if no selection was made, trigger the warning (and do NOT send user to next step):
+    //     if(understandingInput == 0){
+    //         console.log('NO ZEROES ALLOWED!');
+    //         setBlankWarning(true);
+    //     // if a selection WAS made, dispatch it to the reducer and route user to next step:
+    //     } else {
+    //     dispatch({
+    //         type: 'SET_UNDERSTANDING',
+    //         payload: understandingInput
+    //       });
+    //     routeToSupport();
+    //     }
+    // }
+
     const routeToSupport = () => {
         history.push('/support');
+    }
+
+    const routeToReview = () => {
+        history.push('/review');
     }
 
     return(
