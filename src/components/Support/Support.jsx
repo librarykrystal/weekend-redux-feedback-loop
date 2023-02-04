@@ -7,6 +7,8 @@ function Support () {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const supportStore = useSelector(store => store.supportR);
+
     const [supportInput, setSupportInput] = useState(0);
 
     // Warning default is false,
@@ -14,24 +16,59 @@ function Support () {
     const [blankWarning, setBlankWarning] = useState(false);
 
     const handleSubmit = (event) => {
-        // console.log('SUPPORT SUBMIT CLICKED');
+        // console.log('FEELING SUBMIT CLICKED');
         event.preventDefault();
-        // if no selection was made, trigger the warning (and do NOT send user to next step):
-        if(supportInput == 0){
+        // if no selection has been made, trigger the warning and do NOT route user anywhere:
+        if(supportInput == 0 && supportStore == 0){
             console.log('NO ZEROES ALLOWED!');
             setBlankWarning(true);
-        // if a selection WAS made, dispatch it to the reducer and route user to next step:
-        } else {
+        // if selection was previously made, and is not being changed, send user to review page:
+        } else if (supportInput == 0 && supportStore != 0){
+            console.log('FINE, KEEP YOUR PRE-EXISTING SUPPORT!');
+            routeToReview();
+        // if user is updating a previous selection, dispatch it to reducer and send user to review page:
+        } else if (supportInput != 0 && supportStore != 0){
+            console.log('THANKS FOR UPDATING YOUR SUPPORT!');
             dispatch({
                 type: 'SET_SUPPORT',
                 payload: supportInput
               });
+            routeToReview();
+        // if a selection is made for the first time, dispatch it to the reducer and route user to next step:
+        } else {
+            console.log('THANKS FOR SHARING YOUR SUPPORT!');
+            dispatch({
+                type: 'SET_SUPPORT',
+                payload: supportInput
+            });
             routeToComments();
         }
     }
 
+
+    // const handleSubmit = (event) => {
+    //     // console.log('SUPPORT SUBMIT CLICKED');
+    //     event.preventDefault();
+    //     // if no selection was made, trigger the warning (and do NOT send user to next step):
+    //     if(supportInput == 0){
+    //         console.log('NO ZEROES ALLOWED!');
+    //         setBlankWarning(true);
+    //     // if a selection WAS made, dispatch it to the reducer and route user to next step:
+    //     } else {
+    //         dispatch({
+    //             type: 'SET_SUPPORT',
+    //             payload: supportInput
+    //           });
+    //         routeToComments();
+    //     }
+    // }
+
     const routeToComments = () => {
         history.push('/comments');
+    }
+
+    const routeToReview = () => {
+        history.push('/review');
     }
 
     return(

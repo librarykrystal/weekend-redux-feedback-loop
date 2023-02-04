@@ -45,24 +45,6 @@ function Understanding () {
         }
     }
 
-
-    // const handleSubmit = (event) => {
-    //     // console.log('UNDERSTANDING SUBMIT CLICKED');
-    //     event.preventDefault();
-    //     // if no selection was made, trigger the warning (and do NOT send user to next step):
-    //     if(understandingInput == 0){
-    //         console.log('NO ZEROES ALLOWED!');
-    //         setBlankWarning(true);
-    //     // if a selection WAS made, dispatch it to the reducer and route user to next step:
-    //     } else {
-    //     dispatch({
-    //         type: 'SET_UNDERSTANDING',
-    //         payload: understandingInput
-    //       });
-    //     routeToSupport();
-    //     }
-    // }
-
     const routeToSupport = () => {
         history.push('/support');
     }
