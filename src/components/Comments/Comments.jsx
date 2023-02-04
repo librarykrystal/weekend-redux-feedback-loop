@@ -9,7 +9,7 @@ function Comments () {
 
     const commentsStore = useSelector(store => store.commentsR);
 
-    const [commentsInput, setCommentsInput] = useState('');
+    const [commentsInput, setCommentsInput] = useState(commentsStore);
 
     const handleSubmit = (event) => {
         console.log('COMMENTS SUBMIT CLICKED');
@@ -32,7 +32,7 @@ function Comments () {
 
         <form onSubmit={handleSubmit} className="commentsInput">
             <textarea
-                defaultValue={commentsStore}
+                value={commentsInput}
                 className="textInput"
                 type="text"
                 rows="10" cols="40"
