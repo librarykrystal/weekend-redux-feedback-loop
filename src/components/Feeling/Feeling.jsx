@@ -7,6 +7,8 @@ function Feeling () {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const feelingStore = useSelector(store => store.feelingR);
+
     const [feelingInput, setFeelingInput] = useState(0);
 
     // Warning default is false,
@@ -16,22 +18,39 @@ function Feeling () {
     const handleSubmit = (event) => {
         // console.log('FEELING SUBMIT CLICKED');
         event.preventDefault();
-        // if no selection was made, trigger the warning (and do NOT send user to next step):
-        if(feelingInput == 0){
+        // if no selection has been made, trigger the warning and do NOT route user anywhere:
+        if(feelingInput == 0 && feelingStore == 0){
             console.log('NO ZEROES ALLOWED!');
             setBlankWarning(true);
-        // if a selection WAS made, dispatch it to the reducer and route user to next step:
+        // if selection was previously made, and is not being changed, send user to review page:
+        } else if (feelingInput == 0 && feelingStore != 0){
+            console.log('FINE, KEEP YOUR PRE-EXISTING FEELINGS!');
+            routeToReview();
+        // if user is updating a previous selection, dispatch it to reducer and send user to review page:
+        } else if (feelingInput != 0 && feelingStore != 0){
+            console.log('THANKS FOR UPDATING YOUR FEELINGS!');
+            dispatch({
+                type: 'SET_FEELING',
+                payload: feelingInput
+              });
+            routeToReview();
+        // if a selection is made for the first time, dispatch it to the reducer and route user to next step:
         } else {
-        dispatch({
-            type: 'SET_FEELING',
-            payload: feelingInput
-          });
-        routeToUnderstanding();
+            console.log('THANKS FOR SHARING YOUR FEELINGS!');
+            dispatch({
+                type: 'SET_FEELING',
+                payload: feelingInput
+            });
+            routeToUnderstanding();
         }
     }
 
     const routeToUnderstanding = () => {
         history.push('/understanding');
+    }
+
+    const routeToReview = () => {
+        history.push('/review');
     }
 
     return(
