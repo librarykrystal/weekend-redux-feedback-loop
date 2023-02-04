@@ -50,6 +50,10 @@ function Review () {
         history.push('/understanding');
     }
 
+    const routeToSupport = () => {
+        history.push('/support');
+    }
+
     const routeToComments = () => {
         history.push('/comments');
     }
@@ -58,14 +62,14 @@ function Review () {
         <>
         <h2>REVIEW</h2>
         <p className="bold">FEELING: {feelingIn} <button className="editBtn" onClick={routeToFeeling}>EDIT</button></p>
-        <p className="bold">UNDERSTANDING: {understandingIn}</p>
-        <p className="bold">SUPPORT: {supportIn}</p>
+        <p className="bold">UNDERSTANDING: {understandingIn} <button className="editBtn" onClick={routeToUnderstanding}>EDIT</button></p>
+        <p className="bold">SUPPORT: {supportIn} <button className="editBtn" onClick={routeToSupport}>EDIT</button></p>
 
         {/* Conditional render -
         blankWarning is only truthy if user has attempted to submit with missing input(s) */}
         { blankWarning && <p className="noEntry">Please complete all sections above to continue.</p>}
 
-        <p className="bold-comments" >COMMENTS:</p>
+        <p className="bold-comments" >COMMENTS: <button className="editBtn" onClick={routeToComments}>EDIT</button></p>
         <p className="comments">{commentsIn}</p>
         <button onClick={submitFeedback}>SUBMIT</button>
         </>

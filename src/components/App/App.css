@@ -54,3 +54,8 @@ a:visited {
 .noEntry {
   color: firebrick;
 }
+
+.italic {
+  font-style: italic;
+  color: gray;
+}

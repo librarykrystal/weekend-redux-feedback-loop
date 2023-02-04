@@ -7,6 +7,8 @@ function Comments () {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const commentsStore = useSelector(store => store.commentsR);
+
     const [commentsInput, setCommentsInput] = useState('');
 
     const handleSubmit = (event) => {
@@ -26,9 +28,11 @@ function Comments () {
     return(
         <>
         <h3>Any COMMENTS?</h3>
+        <p className="italic">optional</p>
 
         <form onSubmit={handleSubmit} className="commentsInput">
             <textarea
+                defaultValue={commentsStore}
                 className="textInput"
                 type="text"
                 rows="10" cols="40"

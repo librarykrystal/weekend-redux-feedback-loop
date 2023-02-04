@@ -44,25 +44,7 @@ function Support () {
             routeToComments();
         }
     }
-
-
-    // const handleSubmit = (event) => {
-    //     // console.log('SUPPORT SUBMIT CLICKED');
-    //     event.preventDefault();
-    //     // if no selection was made, trigger the warning (and do NOT send user to next step):
-    //     if(supportInput == 0){
-    //         console.log('NO ZEROES ALLOWED!');
-    //         setBlankWarning(true);
-    //     // if a selection WAS made, dispatch it to the reducer and route user to next step:
-    //     } else {
-    //         dispatch({
-    //             type: 'SET_SUPPORT',
-    //             payload: supportInput
-    //           });
-    //         routeToComments();
-    //     }
-    // }
-
+    
     const routeToComments = () => {
         history.push('/comments');
     }
