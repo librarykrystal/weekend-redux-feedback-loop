@@ -41,7 +41,7 @@ function Comments () {
             />
             <br />
             <br />
-            <button type="submit">NEXT</button>
+            <button className="nextBtn" type="submit">NEXT</button>
         </form>
         </>
     )

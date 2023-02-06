@@ -25,11 +25,12 @@
 
 .bold {
   font-weight: bold;
+  margin: 8px;
 }
 
 .bold-comments {
   font-weight: bold;
-  margin: 0;
+  /* margin: 0; */
 }
 
 .comments {
@@ -58,4 +59,47 @@ a:visited {
 .italic {
   font-style: italic;
   color: gray;
+}
+
+.reviewItem {
+  border: 1px solid black;
+  margin: 15px;
+  width: 450px;
+  background-color: #e6e6e6;
+}
+
+.editBtn {
+  margin-bottom: 8px;
+  border-style: outset;
+  border-width: 2px;
+}
+
+.editBtn:hover {
+  background-color: lightgray;
+}
+
+.reviewContainer {
+  text-align: center;
+  display: inline-block;
+}
+
+.submitBtn {
+  height: 50px;
+  width: 100px;
+  margin-bottom: 50px;
+  border-style: outset;
+  border-width: 2px;
+}
+
+.submitBtn:hover {
+  background-color: lightgray;
+}
+
+.nextBtn {
+  border-style: outset;
+  border-width: 2px;
+}
+
+.nextBtn:hover {
+  background-color: lightgray;
 }

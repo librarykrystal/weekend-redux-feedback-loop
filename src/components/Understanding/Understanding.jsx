@@ -70,7 +70,7 @@ function Understanding () {
             blankWarning is only truthy if user has attempted to continue without making selection */}
             { blankWarning && <p className="noEntry">Please make a selection to continue.</p>}
             <br />
-            <button type="submit">NEXT</button>
+            <button className="nextBtn" type="submit">NEXT</button>
         </form>
         </>
     )
